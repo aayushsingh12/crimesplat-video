@@ -95,27 +95,6 @@ uv run python tools/eval_poses.py ../workspace/synth ../data/synthetic_room.gt.j
 
 **Footage presets:** `handheld` (phones, default), `bodycam` (fisheye lens, chest height), `drone`, `news`.
 
-**Compute profiles:**
-
-| Profile | GPU | Training resolution | Max Gaussians | Iterations |
-|---|---|---|---|---|
-| `laptop-4gb` | RTX 3050-class | 960 px | 300 k | 7 k |
-| `gpu-8gb` | RTX 4060/4070 | 1280 px | 800 k | 30 k |
-| `gpu-24gb` | RTX 4090 | 1600 px | 2 M | 30 k |
-
-Any setting can be overridden in the case file, e.g. `normalize.camera_height_m: 1.6`. See [pipeline/README.md](pipeline/README.md).
-
----
-
-## Viewer
-
-- **Explore:** drag to orbit, scroll to zoom, right-drag to pan.
-- **Click any surface:** lists the frames that actually observed that spot, using COLMAP's feature tracks (so occlusion is handled), with a crosshair on each frame.
-- **Snap to this view:** flies to the frame's original camera pose with matched field of view and overlays the source frame, to verify the reconstruction against the evidence.
-- **Timeline:** play or scrub through the video. The orange capsule is the camera wearer: for body-cam footage, the officer's path *is* the camera path.
-
----
-
 ## Repository layout
 
 ```
@@ -142,49 +121,3 @@ crimesplat-video/
 | Video | ffmpeg, OpenCV, PySceneDetect, yt-dlp |
 | Pipeline | Python 3.10, uv, pydantic, Typer |
 | Viewer | three.js 0.187, [Spark](https://sparkjs.dev/) 2.4, Vite, TypeScript |
-
----
-
-## Documentation
-
-Start at [docs/README.md](docs/README.md).
-
-| Read this | For |
-|---|---|
-| [00 Overview & requirements](docs/00-overview.md) | Problem, scope, functional and non-functional requirements |
-| [01 Feasibility](docs/01-feasibility.md) | What footage works, and why camera type decides everything |
-| [02 Architecture](docs/02-high-level-architecture.md) · [03 Data flow](docs/03-data-flow.md) · [04 Low-level design](docs/04-low-level-design.md) | System design |
-| [05 Data model](docs/05-data-model.md) | Scene Package format |
-| [08 Risks](docs/08-risks-and-blockers.md) · [09 Evaluation & ethics](docs/09-evaluation-and-ethics.md) | Research plan |
-| [11 Build log & explainer](docs/11-build-log-and-explainer.md) | How v0.1 was built, with the theory behind every stage |
-| [GPU runbook](docs/gpu-day-runbook.md) | Filming guidelines and the plan for full-quality runs |
-| [4D Gaussian Splatting assessment](docs/research/4dgs-feasibility.md) | Why dynamic splats are a research extension, not the core |
-| [Decision records](docs/decisions/) | ADR-0001 to ADR-0005 |
-
-## Roadmap
-
-| Phase | Scope | Status |
-|---|---|---|
-| 0–1 | Static-scene pipeline and viewer | ✅ v0.1 |
-| — | Real-footage tests; full-quality runs on an RTX 40-series GPU | Next |
-| 2 | People tracking and 3D lifting, evidence and event proposals with human review | Planned |
-| 3 | Multi-camera CCTV, evaluation on staged scenes, user study | Planned |
-| 4 | 4D event-clip experiments, SMPL body models | Research stretch |
-
-Details: [docs/10-roadmap.md](docs/10-roadmap.md).
-
----
-
-## Responsible use
-
-This is an **academic research tool**. A reconstruction is an aid to understanding a scene, not a substitute for the original evidence, and the viewer's snap-to-frame overlay exists so every view can be checked against the source.
-
-- Development and published results use **staged or consented footage**. Real case footage must not be published, hosted publicly or sent to third-party services without approval.
-- No face recognition or identity inference. People are anonymous track IDs.
-- AI-generated proposals (planned) are always labelled and require human confirmation.
-
-See [docs/09-evaluation-and-ethics.md](docs/09-evaluation-and-ethics.md).
-
-## Licensing of dependencies
-
-The current pipeline's core (gsplat, COLMAP, three.js, Spark) is permissively licensed. Some components planned for later phases are **non-commercial**: SuperPoint weights, VGGT, MASt3R, SMPL, and the original Inria 3DGS code used by 4D-GS. Ultralytics YOLO is AGPL-3.0. These are fine for academic research but must be reviewed before any commercial use. See [docs/07-tech-stack.md](docs/07-tech-stack.md).
