@@ -34,17 +34,6 @@ flowchart LR
 | **Train** | Optimises a 3D Gaussian Splat with masked L1 + SSIM loss and a memory-capped MCMC strategy |
 | **Package** | Writes a self-contained folder: splat, camera trajectory, thumbnails, sparse points with visibility, manifest with file hashes |
 
-### Verified results (synthetic room, RTX 3050 Laptop 4 GB)
-
-| Metric | Result |
-|---|---|
-| Keyframes registered | 105 / 105 |
-| Camera trajectory error (ATE) | **4.3 mm** mean |
-| Metric scale error | **1.5 %** |
-| Gravity (up-vector) error | **0.46°** |
-| Held-out view quality | **28.6 dB PSNR** |
-| Training | 7,000 iterations in 7.7 min, 0.52 GiB peak VRAM |
-
 ---
 
 ## Quick start
