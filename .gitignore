@@ -1,0 +1,14 @@
+# Pipeline outputs and inputs (large, may be sensitive)
+workspace/
+data/
+web/public/scenes/
+
+# Environments and caches
+pipeline/.venv/
+web/node_modules/
+web/dist/
+__pycache__/
+*.pyc
+
+# Model weights (downloaded on demand)
+*.pt
