@@ -1,0 +1,5 @@
+# Edited news / YouTube footage. Overlays are common; the same lens model as handheld.
+sfm:
+  camera_model: SIMPLE_RADIAL
+normalize:
+  camera_height_m: null

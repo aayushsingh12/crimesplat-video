@@ -1,0 +1,5 @@
+# Chest-mounted police body camera: wide-angle / fisheye lens, chest height.
+sfm:
+  camera_model: OPENCV_FISHEYE
+normalize:
+  camera_height_m: 1.45

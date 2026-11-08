@@ -1,0 +1,6 @@
+case_id: synth
+footage: handheld
+profile: laptop-4gb
+sources:
+- uri: /home/aayushsingh/Projects/crimesplat-video/data/synthetic_room.mp4
+  camera_id: cam0

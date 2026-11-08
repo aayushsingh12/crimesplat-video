@@ -1,0 +1,11 @@
+# RTX 4090-class (24 GB). Full-quality runs.
+frames:
+  target_keyframes: 300
+masks:
+  model: yolo11x-seg.pt
+train:
+  max_long_side: 1600
+  iterations: 30000
+  cap_max: 2000000
+  sh_degree: 3
+  packed: false

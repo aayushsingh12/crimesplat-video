@@ -1,0 +1,5 @@
+# Drone / aerial orbit. Camera height says nothing about scale, so the scene stays unitless.
+sfm:
+  camera_model: SIMPLE_RADIAL
+normalize:
+  camera_height_m: null

@@ -1,0 +1,5 @@
+# Phone or handheld camera walking through a space.
+sfm:
+  camera_model: SIMPLE_RADIAL
+normalize:
+  camera_height_m: 1.5

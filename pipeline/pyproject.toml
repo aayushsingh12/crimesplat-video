@@ -1,0 +1,50 @@
+[project]
+name = "crimesplat"
+version = "0.1.0"
+description = "Video to explorable 3D Gaussian Splat crime-scene reconstruction"
+requires-python = "==3.10.*"
+dependencies = [
+    "torch==2.4.1",
+    "torchvision==0.19.1",
+    "gsplat==1.5.3",
+    "pycolmap==4.2.1",
+    "numpy<2.1",
+    "opencv-python-headless>=4.9",
+    "ultralytics>=8.3",
+    "scenedetect>=0.6.4",
+    "plyfile>=1.0",
+    "pydantic>=2.6",
+    "pyyaml>=6",
+    "typer>=0.12",
+    "rich>=13",
+    "tqdm>=4.66",
+    "yt-dlp>=2025.1.1",
+    "setuptools<75",
+]
+
+[project.scripts]
+crimesplat = "crimesplat.cli:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+# gsplat ships prebuilt CUDA kernels only for these exact torch/CUDA/Python combos.
+environments = ["sys_platform == 'linux' and platform_machine == 'x86_64'", "sys_platform == 'win32'"]
+
+[tool.uv.sources]
+torch = { index = "pytorch-cu124" }
+torchvision = { index = "pytorch-cu124" }
+gsplat = [
+    { url = "https://github.com/nerfstudio-project/gsplat/releases/download/v1.5.3/gsplat-1.5.3%2Bpt24cu124-cp310-cp310-linux_x86_64.whl", marker = "sys_platform == 'linux'" },
+    { url = "https://github.com/nerfstudio-project/gsplat/releases/download/v1.5.3/gsplat-1.5.3%2Bpt24cu124-cp310-cp310-win_amd64.whl", marker = "sys_platform == 'win32'" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu124"
+url = "https://download.pytorch.org/whl/cu124"
+explicit = true
+
+[dependency-groups]
+dev = ["pytest>=8"]

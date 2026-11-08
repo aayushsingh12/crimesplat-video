@@ -1,0 +1,11 @@
+# RTX 3050 Laptop (4 GB). For smoke tests and development, not final quality.
+frames:
+  target_keyframes: 150
+masks:
+  model: yolo11n-seg.pt
+train:
+  max_long_side: 960
+  iterations: 7000
+  cap_max: 300000
+  sh_degree: 2
+  packed: true
